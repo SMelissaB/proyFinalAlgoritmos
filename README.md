@@ -1,0 +1,1 @@
+Proyecto Final para el curso de algoritmos, el Proyecto consiste en un gestor de proyectos que ayude a un equipo de trabajo a gestionar las tareas del equipo.
