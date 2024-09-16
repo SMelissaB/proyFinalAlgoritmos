@@ -16,6 +16,24 @@ public class Persona {
     String especialidad;
     String estado; //desarrollador activo o inactivo;
 
+    public Persona() {
+    }
+
+    public Persona(int id, String codigo, String nombre) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
+
+    public Persona(int id, String codigo, String nombre, String especialidad) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.especialidad = especialidad;
+    }
+    
+    
+    
     public int getId() {
         return id;
     }
@@ -55,6 +73,18 @@ public class Persona {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    
+    @Override
+    public String toString() {
+        return codigo + " - " + nombre;  // Esto es lo que se mostrará en el JComboBox
+    }
+    
+    public String toStringComplete() {
+        return  codigo + " - " + nombre + " - " + especialidad ;
+    }
+    
+ 
     
     
     

@@ -17,12 +17,13 @@ public class Proyecto {
     String codigo;
     String nombre;
     String descripcion;
-    Date fechaCreacion;
-    int tiempoEstimado;
-    Date fechaInicio;
-    Date fechaFin;
-    int responsable;
-    int estado;
+    String fechaCreacion;
+    int horasEstimadas;
+    String fechaInicio;
+    String fechaFin;
+    int responsableId;
+    String estado; 
+    boolean activo;
 
     public int getId() {
         return id;
@@ -56,53 +57,62 @@ public class Proyecto {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public int getTiempoEstimado() {
-        return tiempoEstimado;
+    public int getHorasEstimadas() {
+        return horasEstimadas;
     }
 
-    public void setTiempoEstimado(int tiempoEstimado) {
-        this.tiempoEstimado = tiempoEstimado;
+    public void setHorasEstimadas(int horasEstimadas) {
+        this.horasEstimadas = horasEstimadas;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 
-    public int getResponsable() {
-        return responsable;
+    public int getResponsableId() {
+        return responsableId;
     }
 
-    public void setResponsable(int responsable) {
-        this.responsable = responsable;
+    public void setResponsableId(int responsableId) {
+        this.responsableId = responsableId;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
     
+ 
     
 }
