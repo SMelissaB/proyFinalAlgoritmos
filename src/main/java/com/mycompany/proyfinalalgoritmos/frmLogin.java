@@ -36,7 +36,7 @@ public class frmLogin extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setText("USUARIO");
 
@@ -109,10 +109,12 @@ public class frmLogin extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null," BIENVENIDO "+usuario);
             frmMain M=new frmMain();
              M.setVisible(true);
+             dispose();
        }else if(usuario.equals("Usuario") && con.equals("Usuario123")){
             JOptionPane.showMessageDialog(null," BIENVENIDO "+usuario);
             frmPersona N=new frmPersona();
             N.setVisible(true);
+            dispose();
        }
        else {
            JOptionPane.showMessageDialog(null,"ERROR EN LOS DATOS INGRESADOS !!");
