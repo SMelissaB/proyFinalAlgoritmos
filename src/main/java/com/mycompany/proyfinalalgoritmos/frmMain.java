@@ -5,8 +5,11 @@
  */
 package com.mycompany.proyfinalalgoritmos;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,6 +44,16 @@ public class frmMain extends javax.swing.JFrame {
         String nombre= txtNombre.getText();
         String estado= cboEstado.getSelectedItem().toString();
         List<Proyecto> proyectosFiltrados = new ArrayList<>();
+
+        proyectosFiltrados = filtrarProyectos(nombre,estado);
+        for (Proyecto p : proyectosFiltrados) {
+            model.addRow(new Object[]{p.getCodigo(),p.getNombre(), p.getFechaCreacion(), p.getFechaInicio(),p.getEstado()});
+        }
+    }
+    
+    
+    List<Proyecto> filtrarProyectos(String nombre, String estado){
+        List<Proyecto> proyectosFiltrados = new ArrayList<>();
         for (Proyecto p : proyectos) { 
             if(cboEstado.getSelectedIndex()==0){
                 if (p.getNombre().contains(nombre)) {
@@ -52,9 +65,8 @@ public class frmMain extends javax.swing.JFrame {
                 }
             }   
         }
-        for (Proyecto p : proyectosFiltrados) {
-            model.addRow(new Object[]{p.getCodigo(),p.getNombre(), p.getFechaCreacion(), p.getFechaInicio(),p.getEstado()});
-        }
+        
+        return proyectosFiltrados;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -150,7 +162,7 @@ public class frmMain extends javax.swing.JFrame {
 
         jLabel3.setText("Estado:");
 
-        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(Seleccione)", "No iniciado", "En Proceso", "Finalizado" }));
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "No Iniciado", "En Proceso", "Finalizado" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -263,8 +275,8 @@ public class frmMain extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        proyectos = GestionArchivos.leerProyectos();
-        cargarProyectos();
+        proyectos = GestionArchivos.leerProyectos();//carga el archivo json a una lista de proyectos
+        cargarProyectos();//metodo que sirve para filtar proyectos
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -293,8 +305,17 @@ public class frmMain extends javax.swing.JFrame {
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         if (proyectos != null) {
-            // Exportar la lista de personas a un archivo Excel
-            ExportarExcel.exportarListaPoryectosAExcel(proyectos, "proyectos.xlsx");
+            try {
+                // Exportar la lista de personas a un archivo Excel
+                
+                String nombre= txtNombre.getText();
+                String estado= cboEstado.getSelectedItem().toString();
+                List<Proyecto> proyectosFiltrados = new ArrayList<>(); 
+                proyectosFiltrados = filtrarProyectos(nombre,estado);
+                ExportarExcel.exportarListaPoryectosAExcel(proyectosFiltrados, "proyectos.xlsx");
+            } catch (IOException ex) {
+                Logger.getLogger(frmMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JOptionPane.showMessageDialog(this, "Se exportó a excel correctamente.");
         } else {
             System.out.println("Error al leer el archivo JSON.");

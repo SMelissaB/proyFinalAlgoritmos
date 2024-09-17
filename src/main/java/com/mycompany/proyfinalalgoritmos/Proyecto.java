@@ -22,6 +22,7 @@ public class Proyecto {
     String fechaInicio;
     String fechaFin;
     int responsableId;
+    int porcAvance;
     String estado; 
     boolean activo;
 
@@ -112,7 +113,13 @@ public class Proyecto {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
- 
-    
+
+    public int getPorcAvance() {
+        return porcAvance;
+    }
+
+    public void setPorcAvance(int porcAvance) {
+        this.porcAvance = porcAvance;
+    }
+     
 }
